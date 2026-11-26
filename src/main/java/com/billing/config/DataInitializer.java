@@ -14,8 +14,8 @@ public class DataInitializer {
     @Bean
     CommandLineRunner createDefaultAdmin(UserRepository users, PasswordEncoder encoder) {
         return args -> {
-            if (!users.existsByUsername("admin")) {
-                users.save(new AppUser("admin", encoder.encode("admin123")));
+            if (!users.existsByUsername("leeva")) {
+                users.save(new AppUser("leeva", encoder.encode("1234567")));
             }
         };
     }

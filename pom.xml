@@ -43,8 +43,8 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!-- Optional: lets you run without MySQL using --spring.profiles.active=h2 -->
-        <dependency>
+<!-- Optional: lets you run without MySQL using the h2 profile -->       
+         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
