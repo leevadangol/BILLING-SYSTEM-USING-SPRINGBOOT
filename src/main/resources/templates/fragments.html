@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(pageTitle)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${pageTitle} + ' - Billing System'">Billing System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="topbar" th:fragment="topbar">
+    <h1>Billing System</h1>
+    <nav>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/items/add}">Add Item</a>
+        <a th:href="@{/items/update}">Update Item</a>
+        <a th:href="@{/items/delete}">Delete Item</a>
+        <a th:href="@{/report}">Report</a>
+        <form th:action="@{/logout}" method="post" class="inline-form">
+            <button type="submit" class="link-button">Logout</button>
+        </form>
+    </nav>
+</header>
+<th:block th:fragment="messages">
+    <div class="alert success" th:if="${success}" th:text="${success}"></div>
+    <div class="alert error" th:if="${error}" th:text="${error}"></div>
+    <div class="alert error" th:if="${errors != null and !errors.isEmpty()}">
+        <ul>
+            <li th:each="e : ${errors}" th:text="${e}"></li>
+        </ul>
+    </div>
+</th:block>
+</body>
+</html>

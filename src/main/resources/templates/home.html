@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head(${title})}"></head>
+<body>
+<header th:replace="~{fragments :: topbar}"></header>
+<main class="container">
+    <h2 th:text="${title}">Home</h2>
+    <th:block th:replace="~{fragments :: messages}"></th:block>
+    <p>Welcome, <strong th:text="${username}">admin</strong>. Choose an option:</p>
+    <div class="cards">
+        <a class="card blue" th:href="@{/items/add}">Add Item</a>
+        <a class="card blue" th:href="@{/items/update}">Update Item</a>
+        <a class="card red" th:href="@{/items/delete}">Delete Item</a>
+        <a class="card green" th:href="@{/report}">Report</a>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head(${title})}"></head>
+<body>
+<header th:replace="~{fragments :: topbar}"></header>
+<main class="container">
+    <h2 th:text="${title}">Update Item</h2>
+    <th:block th:replace="~{fragments :: messages}"></th:block>
+
+    <table>
+        <tr><th>ID</th><th>Product Name</th><th>Description</th><th>Quantity</th><th>Price</th><th>Select</th></tr>
+        <tr th:each="p : ${products}" th:classappend="${form.id != null and form.id == p.id} ? 'selected'">
+            <td th:text="${p.id}">1</td>
+            <td th:text="${p.productName}">Name</td>
+            <td th:text="${p.description}">Description</td>
+            <td th:text="${p.quantity}">1</td>
+            <td th:text="${#numbers.formatDecimal(p.price, 1, 2)}">1.00</td>
+            <td><a th:href="@{/items/update(id=${p.id})}">Edit</a></td>
+        </tr>
+        <tr th:if="${products.isEmpty()}"><td colspan="6" class="center">No products found.</td></tr>
+    </table>
+
+    <form th:action="@{/items/update}" th:object="${form}" method="post" class="form">
+        <input type="hidden" name="id" th:value="${form.id}">
+
+        <label>Product Name</label>
+        <input type="text" th:field="*{productName}">
+
+        <label>Description</label>
+        <input type="text" th:field="*{description}">
+
+        <label>Quantity</label>
+        <input type="text" th:field="*{quantity}">
+
+        <label>Price</label>
+        <input type="text" th:field="*{price}">
+
+        <div class="actions">
+            <button type="submit" class="btn btn-green">Update</button>
+            <a class="btn btn-gray" th:href="@{/items/update}">Clear</a>
+            <a class="btn btn-blue" th:href="@{/home}">Back</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>
